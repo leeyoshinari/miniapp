@@ -1,0 +1,34 @@
+<!--components/production.wxml-->
+
+<wxs module="m1">
+  var numberToFix= function (value) {
+    return value.toFixed(1)
+  }
+ module.exports.numberToFix=numberToFix;
+</wxs>
+
+<view style="display: flex; flex-direction: column;">
+  <!-- 商品 -->
+  <view class="production" wx:for="{{productions}}" wx:key="key" bindtap="clickOnProduction" data-gid="{{item.skuId}}" data-inOrderCount30Days="{{item.inOrderCount30Days}}"
+  data-discount="{{item.couponInfo.couponList[0].discount}}" data-price="{{item.priceInfo.price}}">
+    <image class="p-left-cover" src="{{item.imageInfo.imageList[0].url}}"  mode="aspectFill"/>
+    <view class="p-right-view">
+      <view class="p-name">{{item.skuName}}</view>
+      <view class="p-info">
+        <text class="p-info-discount" wx:if="{{item.couponInfo.couponList.length > 0}}">{{item.couponInfo.couponList[0].discount}}元优惠券</text>
+        <text class="p-info-discount" wx:if="{{item.couponInfo.couponList[0].quota > item.priceInfo.price}}">满{{item.couponInfo.couponList[0].quota}}减{{item.couponInfo.couponList[0].discount}}</text>
+        <text class="p-info-sale" wx:if="{{item.inOrderCount30Days}}">{{item.inOrderCount30Days}}人已买</text>
+        <text class="p-info-sale" wx:else>0人已买</text>
+      </view>
+      <view class="p-price">
+        <view style="flex-grow: 1;"><text class="p-price1">券后</text><text class="ppre">￥</text>
+          <text class="p-price2" wx:if="{{item.couponInfo.couponList.length > 0 && item.couponInfo.couponList[0].quota > item.priceInfo.price}}">{{item.priceInfo.price}}</text>
+          <text class="p-price2" wx:elif="{{item.couponInfo.couponList.length > 0 && item.couponInfo.couponList[0].quota <= item.priceInfo.price}}">{{m1.numberToFix(item.priceInfo.price - item.couponInfo.couponList[0].discount)}}</text>
+          <text class="p-price2" wx:else>{{item.priceInfo.price}}</text>
+          <text class="p-price3">￥{{item.priceInfo.price}}</text>
+        </view>
+        <text class="p-shop">{{item.shopInfo.shopName}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/jd_index/index",
+    "pages/index/index",
+    "pages/wmindex/index",
+    "pages/detail/detail",
+    "pages/search/search",
+  ],
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#ec6933",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/jd_index/index",
+        "text": "京东",
+        "iconPath": "images/tabbar/jd.png",
+        "selectedIconPath": "images/tabbar/jd-g.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "拼多多",
+        "iconPath": "images/tabbar/pdd.png",
+        "selectedIconPath": "images/tabbar/pdd-g.png"
+      },
+      {
+        "pagePath": "pages/wmindex/index",
+        "text": "外卖/活动",
+        "iconPath": "images/tabbar/waimai-g.png",
+        "selectedIconPath": "images/tabbar/waimai.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "领优惠券 省钱又实惠",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#0bb9b6",
+    "backgroundColor": "#f0f0f0"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

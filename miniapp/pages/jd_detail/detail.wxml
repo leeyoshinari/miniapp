@@ -1,0 +1,83 @@
+<!--pages/detail/detail.wxml-->
+
+<wxs module="m2">
+  var numberToFix= function (value) {
+    return value.toFixed(2)
+  }
+ module.exports.numberToFix=numberToFix;
+</wxs>
+<wxs module="m1">
+  var repMatch= function (value) {
+    var lists = [];
+    //var pattern = getRegExp('(http.*?jpg)|(//img.*?jpg)|(http.*?png)|(//img.*?png)', 'gi');
+    //var results = value.match(pattern);
+    var results = value.split(',')
+    for (var i=0; i<results.length; i++) {
+      lists.push(results[i])
+    }
+    return lists;
+  }
+ module.exports.repMatch=repMatch;
+</wxs>
+
+<view class="container detail-container" wx:if="detail">
+  <swiper class='carousel_swiper' indicator-dots="true" indicator-color="#f4f4f4" indicator-active-color="#ec6933" autoplay="true" interval='2000' circular='true'>
+    <block wx:for="{{detail.imageInfo.imageList}}" wx:key="key">
+      <swiper-item bindtap='tapGallery' data-url='{{item.url}}'>
+        <image class="carouselImg" src='{{item.url}}' mode='aspectFill' ></image>
+      </swiper-item>
+    </block>
+  </swiper> 
+  <view class="detail-top-info">
+    <view class="top-info-price">
+      <view class="price-left" wx:if="{{detail.price}}">
+        <view>
+          <text class="ppre">￥</text>
+          <text class="cprice" wx:if="{{detail.discount > 0}}">{{m2.numberToFix(detail.price - detail.discount)}}</text>
+          <text class="cprice" wx:else>{{detail.price}}</text>
+        </view>
+        <view class="qafter">券后价</view>
+        <text class="oprice">￥{{detail.price}}</text>
+      </view>
+      <text class="price-right" wx:if="{{detail.inOrderCount30Days}}">30天销量{{detail.inOrderCount30Days}}件</text>
+    </view>
+    <view class="top-info-name"><text>{{detail.skuName}}</text></view>
+  </view>
+  <view class="detail-discount" wx:if="{{detail.skuName}}" bindtap="buy">
+    <text class="discount-text" wx:if="{{detail.discount > 0}}">优惠券：￥{{detail.discount}}</text>
+    <text class="discount-text" wx:else>无可用优惠券</text>
+    <view class="discount-time" wx:if="{{detail.coupon_amount > 0}}">
+      <text>优惠券使用期限</text>
+      <text>{{detail.coupon_start_time}} - {{detail.coupon_end_time}}</text>
+    </view>
+    <view class="discount-yline" wx:if="{{detail.skuName}}"></view>
+    <text class="discount-action" wx:if="{{detail.discount > 0}}">立即领券</text>
+    <text class="discount-action" wx:else>立即购买</text>
+  </view>
+
+  <view class="shop-info" wx:if="{{detail.brandName}}">
+    <text class="shop-name">{{detail.brandName}}</text>
+    <text class="provcity">所在地： {{detail.provcity}}</text>
+    <!--<view class="shop-other">
+      <view class="shop-other-item"><text>宝贝描述</text><text>{{detail.desc_txt}}</text></view>
+      <view class="shop-other-item"><text>卖家服务</text><text>{{detail.serv_txt}}</text></view>
+      <view class="shop-other-item"><text>物流服务</text><text>{{detail.lgst_txt}}</text></view>
+    </view>-->
+  </view>
+
+  <view class="detail-info" wx:if="{{detail.skuName}}">
+    <text class="detail-name">商品详情</text>
+    <text class="detail-desc">{{detail.title}}</text>
+    <text class="detail-desc" wx:if="{{detail.short_title}}">{{detail.short_title}}</text>
+    <image wx:for="{{m1.repMatch(detail.detailImages)}}" wx:key="key" src="{{item}}" mode='aspectFill'/>
+  </view>
+
+  <view class="bottom-actions">
+    <view class="action-home" bindtap="gohome"><image src="/images/home-s.png"/></view>
+    <view class="share"><button open-type="share"><text class="action-text">分享好友</text></button></view>
+    <view class="buy" bindtap="buy">
+      <text class="action-text" wx:if="{{detail.coupon_amount > 0}}">立即领券</text>
+      <text class="action-text" wx:else>立即购买</text>
+    </view>
+  </view>
+</view>

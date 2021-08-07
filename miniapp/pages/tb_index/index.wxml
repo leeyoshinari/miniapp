@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<!--<add-tips text="点击「添加小程序」，下次访问更便捷" />-->
+<view class="container">
+    <view class="search-tool">
+        <input bindfocus="gotoSearch" placeholder="搜索你要的商品" type="text"></input>
+    </view>
+  <view class="menu">
+    <view class="menu-item" bindtap="gotoStype" data-type="{{1}}">
+      <image src="/images/hot.png" mode="aspectFit"/>
+      <text>热门好货</text>
+    </view>
+    <view class="menu-item" bindtap="gotoStype" data-type="{{2}}">
+      <image src="/images/sale.png" mode="aspectFit"/>
+      <text>大额优惠</text>
+    </view>
+    <view bindtap="gotoStype" class="menu-item" data-type="{{3}}">
+       <image mode="aspectFit" src="/images/pp.png"></image>
+       <text>品牌尖货</text>
+    </view>
+    <view class="menu-item" bindtap="gotoStype" data-type="{{4}}">
+      <image src="/images/mai.png" mode="aspectFit"/>
+      <text>精品好货</text>
+    </view>
+  </view>
+
+  <view class="production-tools">
+    <scroll-view class="category" scroll-x="{{true}}" style="width:100%" scroll-y="{{false}}">
+      <view wx:for="{{categorys}}" wx:key="key" class="category-item  {{s_category_oid === item.oid ? 'category-item-s' : ''}}" data-oid="{{item.oid}}" bindtap="changeCategoryId">{{item.text}}</view>
+    </scroll-view>
+  </view>
+  <production productions="{{productions}}" good_type="{{good_type}}" />
+</view>

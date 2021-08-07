@@ -1,0 +1,41 @@
+<!--components/production.wxml-->
+
+<wxs module="m1">
+  var numberToFix= function (value) {
+    return value.toFixed(2)
+  }
+ module.exports.numberToFix=numberToFix;
+</wxs>
+<wxs module="m2">
+  var getShareUrl= function (url1, url2) {
+    if (url1) {
+      return url1;
+    } else {
+      return url2;
+    }
+  }
+ module.exports.getShareUrl=getShareUrl;
+</wxs>
+
+<view style="display: flex; flex-direction: column;">
+  <!-- 商品 -->
+  <view class="production" wx:for="{{productions}}" wx:key="key" bindtap="clickOnBoard" data-gid="{{item.item_id}}">
+    <image class="p-left-cover" src="{{item.pict_url}}"  mode="aspectFill"/>
+    <view class="p-right-view">
+      <view class="p-name">{{item.title}}</view>
+      <view class="p-info">
+        <text class="p-info-discount" wx:if="{{item.coupon_amount > 0}}">{{item.coupon_amount}}元优惠券</text>
+        <text class="p-info-sale">{{item.volume}}人已买</text>
+      </view>
+      <!--<text wx:if="{{item.coupon_share_url}}" class="p-kouling">领券购买</text>-->
+      <view class="p-price">
+        <view style="flex-grow: 1;"><text class="p-price1">券后</text><text class="ppre">￥</text>
+          <text class="p-price2" wx:if="{{item.coupon_amount}}">{{m1.numberToFix((item.zk_final_price - item.coupon_amount))}}</text>
+          <text class="p-price2" wx:else>{{item.zk_final_price}}</text>
+          <text class="p-price3">￥{{item.zk_final_price}}</text>
+        </view>
+        <text class="p-shop">{{m2.getShareUrl(item.shop_title, item.nick)}}</text>
+      </view>
+    </view>
+  </view>
+</view>

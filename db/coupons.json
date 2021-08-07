@@ -1,0 +1,47 @@
+{
+    "_id": "fc5ac5c95fbd0bf9003d301f646b7191",
+    "title": "饿了么",
+    "coupon": [
+	    {
+            "name": "饿了么餐饮红包",
+            "type": 1,
+			"isminiapp": 0,
+            "url": "https://s.click.ele.me/LTRc3ou",
+            "bannerPic": "https://gw.alicdn.com/tfs/TB16Sf834v1gK0jSZFFXXb0sXXa-640-361.jpg",
+            "minapp": {
+                "appid": "wxece3a9a4c82f58c9",
+                "path": "pages/sharePid/web/index?scene=https://s.click.ele.me/LTRc3ou"
+            }
+        },
+		{
+            "name": "夏日冰宠节",
+            "type": 1,
+			"isminiapp": 0,
+            "url": "https://s.click.ele.me/GGxsVju",
+            "bannerPic": "https://img.alicdn.com/imgextra/i3/O1CN01aWaAa91DzwlBdDJOh_!!6000000000288-0-tps-800-450.jpg",
+            "minapp": {
+                "appid": "wxece3a9a4c82f58c9",
+                "path": "pages/sharePid/web/index?scene=https://s.click.ele.me/GGxsVju"
+            }
+        }
+    ]
+}
+{
+    "_id": "fc5ac5c95fbd0bf9003d301f688b6662",
+    "title": "京东",
+    "coupon": [
+		{
+            "name": "30元会场通用优惠券",
+            "type": 2,
+			"time": "2021.08.09-2021.08.15",
+			"isminiapp": 0,
+            "url": "https://u.jd.com/atv3GW4",
+            "bannerPic": "https://img30.360buyimg.com/ads/jfs/t1/158838/2/5170/89899/6010c2c5Ec3f52aa4/3ae0d224c969ab1c.png",
+            "minapp": {
+                "appid": "wx91d27dbf599dff74",
+                "path": "pages/union/proxy/proxy?spreadUrl=https://u.jd.com/atv3GW4"
+            }
+        }
+		
+    ]
+}
